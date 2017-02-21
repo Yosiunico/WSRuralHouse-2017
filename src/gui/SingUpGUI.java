@@ -12,8 +12,16 @@ import javax.swing.JRadioButton;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.ButtonGroup;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+import dataAccess.*;
+import domain.Customer;
+import domain.Owner;
 
 public class SingUpGUI extends JFrame {
+	
+	DataAccess dataAccess = new DataAccess();
 
 	private JPanel contentPane;
 	private JTextField usernameJTextField;
@@ -72,6 +80,25 @@ public class SingUpGUI extends JFrame {
 		contentPane.add(ownerJRadioButton);
 		
 		JButton createAccountJButton = new JButton("Create account");
+		createAccountJButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				boolean passwordMatch = false;
+				if(passwordJPasswordField.getPassword().toString().equals(confirmPasswordJPasswordField.getPassword().toString())) {
+					passwordMatch = true;
+				}
+				
+				if(passwordMatch) {
+					if(customerJRadioButton.isSelected()) {
+						Customer customer = new Customer(usernameJTextField.getText().toString(), passwordJPasswordField.getPassword().toString());
+						dataAccess.storeCustomer(customer);
+					} else if(ownerJRadioButton.isSelected()) {
+						Owner owner = new Owner(usernameJTextField.getText().toString(), passwordJPasswordField.getPassword().toString());
+						dataAccess.storeOwner(owner);
+					}
+				}
+				
+			}
+		});
 		createAccountJButton.setBounds(87, 201, 252, 23);
 		contentPane.add(createAccountJButton);
 		
