@@ -19,6 +19,8 @@ import configuration.ConfigXML;
 //import domain.Booking;
 import domain.Offer;
 import domain.RuralHouse;
+import domain.Customer;
+import domain.Owner;
 import exceptions.OverlappingOfferExists;
 
 public class DataAccess  {
@@ -104,8 +106,7 @@ public class DataAccess  {
 		System.out.println("Offer not created: "+e.toString());
 		return null;
 	}
-	}
-	
+	}	
 	
 	public Vector<RuralHouse> getAllRuralHouses() {
 		System.out.println(">> DataAccess: getAllRuralHouses");
@@ -145,5 +146,17 @@ public class DataAccess  {
 	public void close(){
 		db.close();
 		System.out.println("DataBase closed");
+	}
+	
+	public void storeCustomer(Customer customer) {
+		db.getTransaction().begin();
+		db.persist(customer);
+		db.getTransaction().commit();
+	}
+	
+	public void storeOwner(Owner owner) {
+		db.getTransaction().begin();
+		db.persist(owner);
+		db.getTransaction().commit();
 	}
 }
