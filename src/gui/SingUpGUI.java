@@ -13,7 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.ButtonGroup;
 
-public class CreateAccountGUI extends JFrame {
+public class SingUpGUI extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField usernameJTextField;
@@ -28,7 +28,7 @@ public class CreateAccountGUI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CreateAccountGUI frame = new CreateAccountGUI();
+					SingUpGUI frame = new SingUpGUI();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -40,7 +40,7 @@ public class CreateAccountGUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CreateAccountGUI() {
+	public SingUpGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 527, 300);
 		contentPane = new JPanel();
